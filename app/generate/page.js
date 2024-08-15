@@ -88,6 +88,81 @@ export default function Generate() {
     </Grid>
     </Box>
     )}
+    {flashcards.length > 0 && (
+  <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
+    <Button variant="contained" color="primary" onClick={handleOpenDialog}>
+      Save Flashcards
+    </Button>
+  </Box>
+)}
+<Dialog open={dialogOpen} onClose={handleCloseDialog}>
+  <DialogTitle>Save Flashcard Set</DialogTitle>
+  <DialogContent>
+    <DialogContentText>
+      Please enter a name for your flashcard set.
+    </DialogContentText>
+    <TextField
+      autoFocus
+      margin="dense"
+      label="Set Name"
+      type="text"
+      fullWidth
+      value={setName}
+      onChange={(e) => setSetName(e.target.value)}
+    />
+  </DialogContent>
+  <DialogActions>
+    <Button onClick={handleCloseDialog}>Cancel</Button>
+    <Button onClick={saveFlashcards} color="primary">
+      Save
+    </Button>
+  </DialogActions>
+</Dialog>
     </Container>
   )
+
 }
+
+
+//add state
+const [setName, setSetName] = useState('')
+const [dialogOpen, setDialogOpen] = useState(false)
+
+//add functions
+const handleOpenDialog = () => setDialogOpen(true)
+const handleCloseDialog = () => setDialogOpen(false)
+
+//will save flashcards to firebase
+const saveFlashcards = async () => {
+    if (!setName.trim()) {
+      alert('Please enter a name for your flashcard set.')
+      return
+    }
+  
+    try {
+      const userDocRef = doc(collection(db, 'users'), user.id)
+      const userDocSnap = await getDoc(userDocRef)
+  
+      const batch = writeBatch(db)
+  
+      if (userDocSnap.exists()) {
+        const userData = userDocSnap.data()
+        const updatedSets = [...(userData.flashcardSets || []), { name: setName }]
+        batch.update(userDocRef, { flashcardSets: updatedSets })
+      } else {
+        batch.set(userDocRef, { flashcardSets: [{ name: setName }] })
+      }
+  
+      const setDocRef = doc(collection(userDocRef, 'flashcardSets'), setName)
+      batch.set(setDocRef, { flashcards })
+  
+      await batch.commit()
+  
+      alert('Flashcards saved successfully!')
+      handleCloseDialog()
+      setSetName('')
+    } catch (error) {
+      console.error('Error saving flashcards:', error)
+      alert('An error occurred while saving flashcards. Please try again.')
+    }
+  }
