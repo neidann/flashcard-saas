@@ -15,6 +15,30 @@ export default function Generate() {
 
   const handleSubmit = async () => {
     //Implement API call here
+    //checks if empty 
+    if (!text.trim()) {
+        alert('Please enter some text to generate flashcards.')
+        return
+      }
+    
+      try {
+        //sends request with input text
+        const response = await fetch('/api/generate', {
+          method: 'POST',
+          body: text,
+        })
+    
+        if (!response.ok) {
+          throw new Error('Failed to generate flashcards')
+        }
+        
+        //if successful updates flashcards
+        const data = await response.json()
+        setFlashcards(data)
+      } catch (error) {
+        console.error('Error generating flashcards:', error)
+        alert('An error occurred while generating flashcards. Please try again.')
+      }
   }
 
   return (
