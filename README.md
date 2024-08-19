@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# AI-Powered Flashcard-SaaS
+
+Welcome to the AI-Powered Flashcard App! This project is built using [Next.js], and it leverages AI to help users create and review flashcards for efficient learning.
+
+## Features
+
+- **AI-Generated Flashcards:** Automatically generate flashcards based on the input text or topic using AI.
+- **Personalized Learning:** Users receive flashcards tailored to their learning progress and preferences.
+- **Firebase Integration:** Store and retrieve flashcards seamlessly with Firebase.
+- - **Responsive Design:** Optimized for both desktop and mobile devices.
+
+## Tech Stack
+
+- **Next.js:** React framework for building fast and user-friendly web applications.
+- **GROQ API:** For efficient querying of flashcard content.
+- **Firebase:** Database for storing user data and flashcards.
+- **Clerk API:** User authentication and management.
+- **Stripe:** For handling payments and subscriptions.
+- **Vercel:** Hosting and deployment of the Next.js application.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Ensure you have the following installed on your local machine:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Node.js (version 14 or higher)
+- npm or yarn
+- Firebase account and project
+- Groq API Key
+- Clerk API Key
+- Stripe account
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. **Clone the repository:**
 
-## Learn More
+   ```bash
+   git clone https://github.com/neidann/flashcard-saas
+   cd flashcard-saas
 
-To learn more about Next.js, take a look at the following resources:
+2. **Install dependencies:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   npm install
+   # or
+  yarn install
+  
+3. **Set up environment variables:**
+   NEXT_PUBLIC_STRIPE_PUBLIC_KEY =your-stripe-api-key
+   STRIPE_SECRET_KEY = your-stripe-sectret
+   GROQ_API_KEY= your-groq-api-key
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your-clerk-api-key
+   CLERK_SECRET_KEY= your-clerk-secret-key
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+4. **Run the development server:**
+   npm run dev
+    # or
+   yarn dev
 
-## Deploy on Vercel
+  ### Usage
+1.**Create Flashcards:**
+    *Enter a topic or some text.
+     *The AI will generate flashcards based on the input.
+2.**Personalize Learning:**
+    *Get tailored flashcards based on your progress.
+3.**Review and Manage:**
+    *Store your flashcards with Firebase, manage your account with Clerk, and subscribe using Stripe.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
