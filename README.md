@@ -7,7 +7,7 @@ Welcome to the AI-Powered Flashcard App! This project is built using [Next.js], 
 - **AI-Generated Flashcards:** Automatically generate flashcards based on the input text or topic using AI.
 - **Personalized Learning:** Users receive flashcards tailored to their learning progress and preferences.
 - **Firebase Integration:** Store and retrieve flashcards seamlessly with Firebase.
-- - **Responsive Design:** Optimized for both desktop and mobile devices.
+- **Responsive Design:** Optimized for both desktop and mobile devices.
 
 ## Tech Stack
 
@@ -43,7 +43,7 @@ Ensure you have the following installed on your local machine:
 
    npm install
    # or
-  yarn install
+   yarn install
   
 3. **Set up environment variables:**
    NEXT_PUBLIC_STRIPE_PUBLIC_KEY =your-stripe-api-key
