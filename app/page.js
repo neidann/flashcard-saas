@@ -57,7 +57,7 @@ export default function Home() {
 
 <Box sx={{textAlign: 'center', my: 4}}>
   <Typography variant="h2" component="h1" gutterBottom>
-    Welcome to Flashcard SaaS
+    Welcome to Flashcard AI
   </Typography>
   <Typography variant="h5" component="h2" gutterBottom>
     The easiest way to create flashcards from your text.
@@ -65,9 +65,7 @@ export default function Home() {
   <Button variant="contained" color="primary" sx={{mt: 2, mr: 2}} href="/generate">
     Get Started
   </Button>
-  <Button variant="outlined" color="primary" sx={{mt: 2}}>
-    Learn More
-  </Button>
+
 </Box>
 
 <Box sx={{my: 6}}>

@@ -7,12 +7,27 @@ import {
   Button,
   Typography,
   Box,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  Grid,
+  Card,
+  CardContent,
 } from '@mui/material'
 
 export default function Generate() {
   const [text, setText] = useState('')
   const [flashcards, setFlashcards] = useState([])
 
+  //add state
+  const [setName, setSetName] = useState('')
+  const [dialogOpen, setDialogOpen] = useState(false)
+
+  //add functions
+  const handleOpenDialog = () => setDialogOpen(true)
+  const handleCloseDialog = () => setDialogOpen(false)
   const handleSubmit = async () => {
     //Implement API call here
     //checks if empty 
@@ -123,14 +138,6 @@ export default function Generate() {
 
 }
 
-
-//add state
-const [setName, setSetName] = useState('')
-const [dialogOpen, setDialogOpen] = useState(false)
-
-//add functions
-const handleOpenDialog = () => setDialogOpen(true)
-const handleCloseDialog = () => setDialogOpen(false)
 
 //will save flashcards to firebase
 const saveFlashcards = async () => {
