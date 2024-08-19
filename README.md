@@ -40,7 +40,7 @@ Ensure you have the following installed on your local machine:
    cd flashcard-saas
 
 2. **Install dependencies:**
-
+   ```bash
    npm install
    # or
    yarn install
@@ -53,17 +53,18 @@ Ensure you have the following installed on your local machine:
    CLERK_SECRET_KEY= your-clerk-secret-key
 
 4. **Run the development server:**
+   ```bash
    npm run dev
     # or
    yarn dev
 
   ### Usage
-1.**Create Flashcards:**
-    *Enter a topic or some text.
-     *The AI will generate flashcards based on the input.
-2.**Personalize Learning:**
-    *Get tailored flashcards based on your progress.
-3.**Review and Manage:**
-    *Store your flashcards with Firebase, manage your account with Clerk, and subscribe using Stripe.
+- 1.**Create Flashcards:**
+    -*Enter a topic or some text.
+    - *The AI will generate flashcards based on the input.
+-2.**Personalize Learning:**
+   - *Get tailored flashcards based on your progress.
+-3.**Review and Manage:**
+   - *Store your flashcards with Firebase, manage your account with Clerk, and subscribe using Stripe.
 
 
