@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useUser } from '@clerk/nextjs';
 import { CollectionReference, doc, getDoc, setDoc } from 'firebase/firestore'
 import { db } from '@/firebase';
+import theme from '../theme/theme';
 
 export default function Flashcards() {
     const { isLoaded, isSignedIn, user } = useUser()
@@ -27,6 +28,7 @@ export default function Flashcards() {
       }, [user])
 
       return (
+        <ThemeProvider theme={theme}>
         <Container maxWidth="md">
           <Grid container spacing={3} sx={{ mt: 4 }}>
             {flashcards.map((flashcard, index) => (
@@ -44,6 +46,7 @@ export default function Flashcards() {
             ))}
           </Grid>
         </Container>
+        </ThemeProvider>
       )
 
       const handleCardClick = (id) => {

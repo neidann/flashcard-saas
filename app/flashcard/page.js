@@ -4,8 +4,8 @@ import { useUser} from "@clerk/nextjs"
 import { useEffect, useState } from 'react'
 import { collection, doc, getDoc, getDocs} from 'firebase/firestore'
 import {db} from '@/firebase'
-import { Container, Grid } from '@mui/material'
-
+import { Container, Grid, ThemeProvider } from '@mui/material'
+import theme from '../theme/theme';
 
 export default function Flashcard() {
     const { isLoaded, isSignedIn, user } = useUser()
@@ -39,6 +39,7 @@ export default function Flashcard() {
       }
 
       return (
+        <ThemeProvider theme={theme}>
         <Container maxWidth="md">
           <Grid container spacing={3} sx={{ mt: 4 }}>
             {flashcards.map((flashcard) => (
@@ -67,5 +68,6 @@ export default function Flashcard() {
             ))}
           </Grid>
         </Container>
+        </ThemeProvider>
       )
   }
