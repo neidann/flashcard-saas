@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import Image from "next/image";
 import getStripe from '../utils/get-stripe';
 import { Container, AppBar, Toolbar, Typography, Button, Box, Grid, CssBaseline } from '@mui/material';
@@ -6,6 +6,7 @@ import Head from 'next/head';
 import { SignedOut, SignedIn, UserButton } from '@clerk/nextjs';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import theme from './theme/theme';
+import paperImage from './images/white-crinkled-paper-texture-background.jpg';
 
 export default function Home() {
   const handleSubmit = async () => {
@@ -19,7 +20,7 @@ export default function Home() {
     const checkout_sessionJson = await checkoutSession.json();
 
     if (checkoutSession.statuscode === 500) {
-      console.error(checkoutSession.message);
+      console.error(checkout_sessionJson.message);
       return;
     }
 
@@ -35,13 +36,31 @@ export default function Home() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline /> {/* Normalize CSS for consistent styling */}
-      <Container maxWidth="lg">
+      <Container maxWidth="100vh" sx={{ 
+        height: '100vh',
+        minHeight: '100vh', 
+        position: 'relative', 
+        backgroundImage: `url(${paperImage.src})`, 
+        backgroundSize: 'cover', 
+        backgroundAttachment: 'fixed', 
+        backgroundPosition: 'center',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 100%)', // Gradient to fade to white
+          zIndex: -1,
+        }
+      }}>
         <Head>
           <title>Flashcard AI</title>
           <meta name="description" content="Create flashcard from your text" />
         </Head>
 
-        <AppBar position="static">
+
           <Toolbar>
             <Typography variant="h6" style={{ flexGrow: 1 }}>
               Flashcard SaaS
@@ -54,40 +73,50 @@ export default function Home() {
               <UserButton />
             </SignedIn>
           </Toolbar>
-        </AppBar>
+
 
         <Box sx={{ textAlign: 'center', my: 4 }}>
           <Typography variant="h2" component="h1" gutterBottom>
             Welcome to Flashcard AI
           </Typography>
-          <Typography variant="h5" component="h2" gutterBottom>
-            The easiest way to create flashcards from your text.
-          </Typography>
+
           <Button variant="outlined" color="primary" sx={{ mt: 2, mr: 2 }} href="/generate">
             Get Started
           </Button>
         </Box>
 
-        <Box sx={{ my: 6 }}>
-          <Typography variant="h4" component="h2" gutterBottom>Features</Typography>
-          <Grid container spacing={4}>
-            <Grid item xs={12} md={4}>
-              <Typography variant="h6" gutterBottom>Effortless Text Input</Typography>
-              <Typography>Just enter your text, and our software takes care of the rest. Creating flashcards has never been simpler.</Typography>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <Typography variant="h6" gutterBottom>Intelligent Flashcards</Typography>
-              <Typography>Our AI expertly condenses your text into clear and concise flashcards, optimized for quick memorization.</Typography>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <Typography variant="h6" gutterBottom>Universal Accessibility</Typography>
-              <Typography>Study anytime, anywhere. Access your flashcards from any device, making it easy to learn on the go.</Typography>
-            </Grid>
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', my: 6, margin: "5%" }}>
+
+        <Grid container spacing={4} justifyContent="center">
+          <Grid item xs={12} md={4}>
+            <Typography variant="h6" gutterBottom align="center">
+              Effortless Text Input
+            </Typography>
+            <Typography align="center">
+              Just enter your text, and our software takes care of the rest. Creating flashcards has never been simpler.
+            </Typography>
           </Grid>
-        </Box>
+          <Grid item xs={12} md={4}>
+            <Typography variant="h6" gutterBottom align="center">
+              Intelligent Flashcards
+            </Typography>
+            <Typography align="center">
+              Our AI expertly condenses your text into clear and concise flashcards, optimized for quick memorization.
+            </Typography>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Typography variant="h6" gutterBottom align="center">
+              Universal Accessibility
+            </Typography>
+            <Typography align="center">
+              Study anytime, anywhere. Access your flashcards from any device, making it easy to learn on the go.
+            </Typography>
+          </Grid>
+        </Grid>
+</Box>
 
         <SignedOut>
-          <Box sx={{ my: 6, textAlign: 'center' }}>
+          <Box sx={{ my: 15, textAlign: 'center' }}>
             <Typography variant="h4" component="h2" gutterBottom>Pricing</Typography>
             <Grid container spacing={4} justifyContent="center">
               <Grid item xs={12} md={6}>
@@ -119,7 +148,6 @@ export default function Home() {
             </Grid>
           </Box>
         </SignedOut>
-
       </Container>
     </ThemeProvider>
   );
