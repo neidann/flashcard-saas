@@ -1,3 +1,4 @@
+//Landing page for our Flashcard SaaS application
 'use client';
 import Image from "next/image";
 import getStripe from '../utils/get-stripe';

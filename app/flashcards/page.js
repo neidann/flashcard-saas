@@ -1,3 +1,6 @@
+//Flashcards page that displays all of the user’s saved flashcard sets
+//Flashcards overview page
+
 'use client'
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';

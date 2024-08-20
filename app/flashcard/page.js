@@ -1,3 +1,6 @@
+//Individual flashcard set view
+//This page allows users to study and interact with a specific set of flashcards
+
 'use client'
 import { useSearchParams } from 'next/navigation'
 import { useUser} from "@clerk/nextjs"

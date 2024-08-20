@@ -1,3 +1,4 @@
+//API route for Stripe Integration
 import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import dotenv from 'dotenv';

@@ -1,3 +1,4 @@
+//API route to Groq AI 
 import { NextResponse } from 'next/server'
 import Groq from 'groq-sdk'
 
@@ -25,6 +26,7 @@ export async function POST(req) {
     const data = await req.text()
     console.log('Received data:', data);
 
+    try{
     //API call - using AI model to generate flashcards based on the text
     const completion = await groq.chat.completions.create({
         messages: [
@@ -33,9 +35,9 @@ export async function POST(req) {
         ],
         model: 'llama3-8b-8192',
         temperature: 0.5,
-        stream: true,
         response_format: { type: 'json_object' },
       })
+    console.log('Completion response:', completion);
 
     //API response - returns generated flashcards as a JSON response
     // Parse the JSON response from the AI API
@@ -43,5 +45,8 @@ export async function POST(req) {
 
     // Return the flashcards as a JSON response
     return NextResponse.json(flashcards.flashcards)
-   
+    }catch (error) {
+      console.error('Error generating flashcards:', error);
+      return NextResponse.json({ error: 'Failed to generate flashcards' }, { status: 500 });
+    }
   }

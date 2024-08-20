@@ -1,3 +1,6 @@
+//Stripe result page
+//Handles the post-payment process and displaying the outcome to the user
+
 'use client'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
