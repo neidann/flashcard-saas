@@ -18,7 +18,7 @@ const ResultPage = () => {
         const fetchCheckoutSession = async () => {
           if (!session_id) return
           try {
-            const res = await fetch(`/api/checkout_sessions?session_id=${session_id}`)
+            const res = await fetch(`/api/checkout_session?session_id=${session_id}`)
             const sessionData = await res.json()
             if (res.ok) {
               setSession(sessionData)

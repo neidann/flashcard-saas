@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 //utility function to format the amount for Strip
 const formatAmountForStripe = (amount, currency) => {

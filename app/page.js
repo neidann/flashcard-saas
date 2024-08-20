@@ -14,14 +14,15 @@ export default function Home() {
     const checkoutSession = await fetch('/api/checkout_session', {
       method: "POST",
       headers: {
-        //origin: 'http://localhost:3000',
+        origin: 'http://localhost:3000',
         'Content-Type': 'application/json',
       },
     });
 
     const checkout_sessionJson = await checkoutSession.json();
-
-    if (checkoutSession.statuscode === 500) {
+    console.log(checkout_sessionJson);
+    
+    if (checkoutSession.status === 500) {
       console.error(checkout_sessionJson.message);
       return;
     }
@@ -135,6 +136,7 @@ export default function Home() {
                   <Typography variant="h5" gutterBottom>$5/month</Typography>
                   <Typography gutterBottom>Access to basic flashcard features and limited storage.</Typography>
                   <Button variant="contained" color="primary" sx={{ mt: 2 }} onClick={handleSubmit}>Choose Basic</Button>
+                  
                 </Box>
               </Grid>
               <Grid item xs={12} md={6}>
@@ -147,7 +149,7 @@ export default function Home() {
                   <Typography variant="h5" gutterBottom>Pro</Typography>
                   <Typography variant="h5" gutterBottom>$10/month</Typography>
                   <Typography gutterBottom>Unlimited flashcards and storage, with priority customer support.</Typography>
-                  <Button variant="contained" color="primary" sx={{ mt: 2 }}>Choose Pro</Button>
+                  <Button variant="contained" color="primary" sx={{ mt: 2 }} onClick={handleSubmit}>Choose Pro</Button>
                 </Box>
               </Grid>
             </Grid>
