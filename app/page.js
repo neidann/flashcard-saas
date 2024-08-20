@@ -10,10 +10,12 @@ import paperImage from './images/white-crinkled-paper-texture-background.jpg';
 
 export default function Home() {
   const handleSubmit = async () => {
+    try{
     const checkoutSession = await fetch('/api/checkout_session', {
       method: "POST",
       headers: {
-        origin: 'http://localhost:3000',
+        //origin: 'http://localhost:3000',
+        'Content-Type': 'application/json',
       },
     });
 
@@ -31,7 +33,10 @@ export default function Home() {
     if (error) {
       console.warn(error.message);
     }
-  };
+  } catch (error) {
+    console.error('Error processing checkout:', error);
+  }
+};
 
   return (
     <ThemeProvider theme={theme}>

@@ -16,6 +16,7 @@
     "@mui/material": "^5.16.7",
     "@sanity/client": "^6.21.3",
     "@stripe/stripe-js": "^4.3.0",
+    "@stripe/terminal-js": "^0.8.0",
     "dotenv": "^16.4.5",
     "encoding": "^0.1.13",
     "firebase": "^10.13.0",

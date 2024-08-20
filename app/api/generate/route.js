@@ -26,7 +26,7 @@ export async function POST(req) {
     console.log('Received data:', data);
 
     //API call - using AI model to generate flashcards based on the text
-    const completion = await gorq.chat.completions.create({
+    const completion = await groq.chat.completions.create({
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: data },
